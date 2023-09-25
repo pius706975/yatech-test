@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "piuspius",
+    "password": "piuspius",
+    "database": "db_test",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "piuspius",
+    "password": "piuspius",
+    "database": "db_test_test",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "piuspius",
+    "password": "piuspius",
+    "database": "db_test_production",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
