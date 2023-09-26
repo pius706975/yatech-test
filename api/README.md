@@ -106,4 +106,6 @@ Check this postman documentation to know how to use the url
 ##
 ##
 ### Note
-It's recommended to use real email if you want to register new account because this feature will send you an email verification to verify your account.
+1. It's recommended to use real email if you want to register new account because this feature will 
+send you an email verification to verify your account.
+2. I give 5 minutes for access token from login feature, if it's expired, use refresh token. Refresh token will expire in 10 hours. 
