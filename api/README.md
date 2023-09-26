@@ -67,6 +67,12 @@ Check "config.json" in "src/database/config/config.json".
 ```
 ##
 
+Make sure that the db has uuid by creating uuid extension from psql because every id in this app will use uuid format.
+``` bash
+    CREATE EXTENSION "uuid-ossp";
+```
+##
+
 ## How to run this app?
 Make sure the steps above are done.
 ##
