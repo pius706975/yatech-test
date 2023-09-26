@@ -72,13 +72,13 @@ controllers.Login = async (req, res)=>{
             return response(res, 401, {message: 'Your account is not verified'})
         } 
 
-        const token = `Bearer ${jwt.sign(user, process.env.JWT_SECRET, {expiresIn: '10s'})}`
+        const token = `Bearer ${jwt.sign(user, process.env.JWT_SECRET, {expiresIn: '1m'})}`
 
         let refreshToken = user.refresh_token
         if(!refreshToken) {
             refreshToken = `Bearer ${jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '2h'})}`
 
-            await models.RefreshToken({refresh_token: refreshToken, email: email})
+            await models.RefreshToken({refresh_token: refreshToken, email: email})  
         }
 
         const responseData = {token, refreshToken}
