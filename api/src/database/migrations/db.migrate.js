@@ -16,9 +16,18 @@ module.exports = {
         updated_at TIMESTAMP DEFAULT NOW()
       )
     `)
+
+    await queryInterface.sequelize.query(`
+    CREATE TABLE IF NOT EXISTS blacklist_token (
+      blacklist_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      blacklist_token VARCHAR,
+      created_at TIMESTAMP DEFAULT NOW()
+    )
+  `)
   },
 
   async down(queryInterface) {
     await queryInterface.sequelize.query(`DROP TABLE IF EXISTS users`)
+    await queryInterface.sequelize.query(`DROP TABLE IF EXISTS blacklist_token`)
   }
 }
