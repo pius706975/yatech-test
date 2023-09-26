@@ -73,8 +73,13 @@ controllers.Login = async (req, res)=>{
         } 
 
         const token = `Bearer ${jwt.sign(user, process.env.JWT_SECRET, {expiresIn: '10s'})}`
-        const refreshToken = `Bearer ${jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '2h'})}`
-        const loginData = await models.RefreshToken({refresh_token: refreshToken, email: email})
+
+        let refreshToken = user.refresh_token
+        if(!refreshToken) {
+            refreshToken = `Bearer ${jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '2h'})}`
+
+            await models.RefreshToken({refresh_token: refreshToken, email: email})
+        }
 
         const responseData = {token, refreshToken}
 
