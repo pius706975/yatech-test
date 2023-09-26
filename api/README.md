@@ -38,7 +38,7 @@ Create new .env file and copy/paste the env keys below into .env.
 
 Check "config.json" in "src/database/config/config.json".
 ``` bash
-    # You need to re-configure this configuration according your db configuration values in .env. Check the example below.
+    # You need to re-configure this configuration according to your db configuration values in .env. Check the example below.
 
     {
         "development": {
