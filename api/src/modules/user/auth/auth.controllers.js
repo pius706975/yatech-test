@@ -72,11 +72,11 @@ controllers.Login = async (req, res)=>{
             return response(res, 401, {message: 'Your account is not verified'})
         } 
 
-        const token = `Bearer ${jwt.sign(user, process.env.JWT_SECRET, {expiresIn: '1m'})}`
+        const token = `Bearer ${jwt.sign(user, process.env.JWT_SECRET, {expiresIn: '5m'})}`
 
         let refreshToken = user.refresh_token
         if(!refreshToken) {
-            refreshToken = `Bearer ${jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '2h'})}`
+            refreshToken = `Bearer ${jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '10h'})}`
 
             await models.RefreshToken({refresh_token: refreshToken, email: email})  
         }
@@ -190,7 +190,7 @@ controllers.RefreshToken = async (req, res)=>{
         delete user.refresh_token
 
         const newTokenAccess = jwt.verify(token.split(' ')[1], process.env.REFRESH_TOKEN_SECRET)
-        const tokenAccess = `Bearer ${jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1h' })}`
+        const tokenAccess = `Bearer ${jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '2h' })}`
 
         const responseData = { tokenAccess }
 
